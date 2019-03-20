@@ -11,7 +11,7 @@ import $ from 'jquery'
 Axios.defaults.baseURL = ''; //主域名
 Axios.defaults.headers.common['token'] = localStorage.token; //自定义头信息
 Axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded'; //定义格式（具体什么格式看官网）
-
+   
 // 请求拦截器 - 发送前做些什么
 Axios.interceptors.request.use(function (config) {
   if (config.method === 'post') {
