@@ -14,7 +14,7 @@ export default {
   name: "OriginalManagement",
   data() {
     return {
-      activeName: "second"
+      activeName: "first"
     };
   },
   methods: {
@@ -28,8 +28,8 @@ export default {
   <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 @media screen and (max-width: 1350px) {
-  .heads > div {
-    width: 95% !important;
+  .OriginalManagement .tsbs {
+    width: 96%!important;
   }
 }
 .OriginalManagement {

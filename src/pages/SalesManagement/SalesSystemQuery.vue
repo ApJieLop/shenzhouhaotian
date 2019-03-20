@@ -1,15 +1,15 @@
 <template>
-    <div class="SalesManagement">
+    <div class="SalesSystemQuery">
       <h1>{{ msg }}</h1>
     </div>
   </template>
   
   <script>
   export default {
-    name: 'SalesManagement',
+    name: 'SalesSystemQuery',
     data () {
       return {
-        msg: 'Welcome to Your Vue.js App',
+        msg: 'Welcome to Your Vue.js App'
       }
     }
   }

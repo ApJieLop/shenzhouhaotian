@@ -1,6 +1,6 @@
 <template>
   <div class="foot">
-    2222
+    
   </div>
 </template>
 

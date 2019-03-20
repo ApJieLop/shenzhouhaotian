@@ -2,8 +2,8 @@
   <div class="heads">
     <div>
       <img class="logo" src="../../assets/images/logo展开.png" alt>
-      <el-menu :default-active="$route.path" router mode="horizontal">
-        <el-menu-item v-for="route in routes" :key="route.path" :index="route.path">{{route.name}}</el-menu-item>
+      <el-menu :default-active="paths" router mode="horizontal">
+        <el-menu-item v-for="route in routes" :key="route.path" :index="route.path" >{{route.name}}</el-menu-item>
       </el-menu>
     </div>
   </div>
@@ -14,8 +14,9 @@ export default {
   name: "heads",
   data() {
     return {
+      paths:'',
       routes: [
-        { path: "/OriginalManagement", name: "产品管理" },
+        { path: "/productManagement", name: "产品管理" },
         { path: "/customerManagement", name: "客户管理" },
         { path: "/SalesManagement", name: "销售管理" },
         { path: "/IntegralManagement", name: "积分管理" },
@@ -24,8 +25,14 @@ export default {
       ]
     };
   },
-  mounted() {},
-  methods: {}
+  mounted() {
+     this.tindex()
+  },
+  methods: {
+    tindex() {      
+      this.paths = '/' + this.$route.fullPath.split('/')[1]
+    }
+  }
 };
 </script>
 

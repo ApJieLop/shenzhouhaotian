@@ -1,5 +1,5 @@
 <template>
-  <div class="productManagement">
+  <div class="SalesManagement">
     <el-menu :default-active="$route.path" router mode="horizontal">
       <el-menu-item v-for="route in routes" :key="route.path" :index="route.path">{{route.name}}</el-menu-item>
     </el-menu>
@@ -9,24 +9,21 @@
   
   <script>
 export default {
-  name: "productManagement",
+  name: "SalesManagement",
   data() {
     return {
       routes: [
-        { path: "/OriginalManagement", name: "原件管理" },
-        { path: "/ProductPlanning", name: "产品规划" },
-        { path: "/ProductMaintenance", name: "产品维护" },
-        { path: "/PromotionManagement", name: "促销品管理" },
-        { path: "/InvoiceCommodityCodingCnformation", name: "开票商品编码信息" }
+        { path: "/SalesManagement/CustomerList", name: "客户列表" },
+        { path: "/SalesManagement/SalesSystemQuery", name: "销售系统查询" },
+        { path: "/SalesManagement/ControlOverInvoices", name: "发票管理" }
       ]
     };
   }
 };
 </script>
   
-  <!-- Add "scoped" attribute to limit CSS to this component only -->
+<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
 .el-menu-item.is-active {
   color: #3a8ee6 !important;
 }
@@ -45,7 +42,7 @@ export default {
   border-bottom: 0;
 }
 .el-menu--horizontal {
-  width: 550px;
+  width: 320px;
   margin: auto;
   margin-top: 5px;
   margin-bottom: 5px;
@@ -53,6 +50,5 @@ export default {
 .heads {
   background: #409eff;
 }
-
 </style>
   

@@ -1,12 +1,26 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Index from '@/components/index'
-
+import Index from '@/pages/index'
 Vue.use(Router)
+
+// 产品管理-引入模块-(懒加载)
+const productManagement = resolve => require(['@/pages/productManagements/productManagement'], resolve)
+const OriginalManagement = resolve => require(['@/pages/productManagements/OriginalManagement'], resolve)
+const ProductPlanning = resolve => require(['@/pages/productManagements/ProductPlanning'], resolve)
+const ProductMaintenance = resolve => require(['@/pages/productManagements/ProductMaintenance'], resolve)
+const PromotionManagement = resolve => require(['@/pages/productManagements/PromotionManagement'], resolve)
+const InvoiceCommodityCodingCnformation = resolve => require(['@/pages/productManagements/InvoiceCommodityCodingCnformation'], resolve)
+// 产品管理-引入模块-(懒加载)
+const CustomerManagement = resolve => require(['@/pages/customerManagement/customerManagement'], resolve)
+// 销售管理-引入模块-(懒加载)
+const SalesManagement = resolve => require(['@/pages/SalesManagement/SalesManagement'], resolve)
+const CustomerList = resolve => require(['@/pages/SalesManagement/CustomerList'], resolve)
+const SalesSystemQuery = resolve => require(['@/pages/SalesManagement/SalesSystemQuery'], resolve)
+const ControlOverInvoices = resolve => require(['@/pages/SalesManagement/ControlOverInvoices'], resolve)
 
 const router = new Router({
   mode: 'history',
-  linkActiveClass: "active",
+  // linkActiveClass: "active",
   routes: [
     // 根路由页
     {
@@ -15,64 +29,64 @@ const router = new Router({
       component: Index,
       meta: {
         title: '首页',
-      },
+      },  
       redirect: to => {
-        return '/productManagement'
+        return 'productManagement'
       },    
       children: [  
         // 产品管理     
         {
-          path: '/productManagement',
+          path: 'productManagement',
           name: 'productManagement',
-          component: resolve => require(['@/components/productManagement/productManagement'], resolve),
+          component:productManagement,
           meta: {
             title: '产品管理',
           },
           redirect: to => {
-            return '/OriginalManagement'
+            return '/productManagement/OriginalManagement'
           },
           children: [
             // 产品管理-原件管理
             {
-              path: '/OriginalManagement',
+              path: 'OriginalManagement',
               name: 'OriginalManagement',
-              component: resolve => require(['@/components/productManagement/OriginalManagement'], resolve),
+              component:OriginalManagement,
               meta: {
                 title: '产品管理-原件管理',
               }
             },  
             // 产品管理-产品规划
             {
-              path: '/ProductPlanning',
+              path: 'ProductPlanning',
               name: 'ProductPlanning',
-              component: resolve => require(['@/components/productManagement/ProductPlanning'], resolve),
+              component: ProductPlanning,
               meta: {
                 title: '产品管理-产品规划',
               }
             },  
             // 产品管理-产品维护
             {
-              path: '/ProductMaintenance',
+              path: 'ProductMaintenance',
               name: 'ProductMaintenance',
-              component: resolve => require(['@/components/productManagement/ProductMaintenance'], resolve),
+              component:ProductMaintenance,
               meta: {
                 title: '产品管理-产品维护',
               }
             }, 
             // 产品管理-促销品管理
             {
-              path: '/PromotionManagement',
+              path: 'PromotionManagement',
               name: 'PromotionManagement',
-              component: resolve => require(['@/components/productManagement/PromotionManagement'], resolve),
+              component:PromotionManagement,
               meta: {
                 title: '产品管理-促销品管理',
               }
             }, 
             // 产品管理-开票商品编码信息
             {
-              path: '/InvoiceCommodityCodingCnformation',
+              path: 'InvoiceCommodityCodingCnformation',
               name: 'InvoiceCommodityCodingCnformation',
-              component: resolve => require(['@/components/productManagement/InvoiceCommodityCodingCnformation'], resolve),
+              component:InvoiceCommodityCodingCnformation,
               meta: {
                 title: '产品管理-开票商品编码信息',
               }
@@ -83,7 +97,7 @@ const router = new Router({
         {
           path: '/customerManagement',
           name: 'customerManagement',
-          component: resolve => require(['@/components/customerManagement/customerManagement'], resolve),
+          component: CustomerManagement,
           meta: {
             title: '客户管理',
           }
@@ -92,16 +106,48 @@ const router = new Router({
         {
           path: '/SalesManagement',
           name: 'SalesManagement',
-          component: resolve => require(['@/components/SalesManagement/SalesManagement'], resolve),
+          component: SalesManagement,
           meta: {
-            title: '销售管理',
-          }
+            title: '客户列表',
+          },
+          redirect: to => {
+            return '/SalesManagement/CustomerList'
+          },
+          children: [
+            // 销售管理-客户列表 
+            {
+              path: 'CustomerList',
+              name: 'CustomerList',
+              component:CustomerList,
+              meta: {
+                title: '销售管理-客户列表',
+              }
+            },
+            // 销售管理-销售系统查询 
+            {
+              path: 'SalesSystemQuery',
+              name: 'SalesSystemQuery',
+              component:SalesSystemQuery,
+              meta: {
+                title: '销售管理-销售系统查询',
+              }
+            },
+            // 销售管理-发票管理
+            {
+              path: 'ControlOverInvoices',
+              name: 'ControlOverInvoices',
+              component:ControlOverInvoices,
+              meta: {
+                title: '销售管理-发票管理',
+              }
+            }                    
+          ]
         },
         // 积分管理
         {
           path: '/IntegralManagement',
           name: 'IntegralManagement',
-          component: resolve => require(['@/components/IntegralManagement/IntegralManagement'], resolve),
+          component: resolve => require(['@/pages/IntegralManagement/IntegralManagement'], resolve),
           meta: {
             title: '积分管理',
           }
@@ -110,7 +156,7 @@ const router = new Router({
         {
           path: '/resourceManagement',
           name: 'resourceManagement',
-          component: resolve => require(['@/components/resourceManagement/resourceManagement'], resolve),
+          component: resolve => require(['@/pages/resourceManagement/resourceManagement'], resolve),
           meta: {
             title: '资源管理',
           }
@@ -119,18 +165,18 @@ const router = new Router({
         {
           path: '/Other',
           name: 'Other',
-          component: resolve => require(['@/components/Other/Other'], resolve),
+          component: resolve => require(['@/pages/Other/Other'], resolve),
           meta: {
             title: '其他',
           }
         }
-      ]
+      ]   
     },
     // 登录页面
     {
       path: '/SignIn',
       name: 'SignIn',
-      component: require('@/components/SignIn'),
+      component: require('@/pages/SignIn'),
       meta: {
         title: '登录',
       }
@@ -139,7 +185,7 @@ const router = new Router({
     {
       path: '*',
       name: 'Error',
-      component: require('@/components/_404'),
+      component: require('@/pages/_404'),
       meta: {
         title: '404',
       }
