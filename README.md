@@ -24,7 +24,7 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 
 1 基本的结构就不说了;
 
-pages -- 目录下文件注解
+pages -- 目录下文件注解 
 
 2    publicHF -- 公共的头&公共的脚
 2.1  head     -- 公共的头
