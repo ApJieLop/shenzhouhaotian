@@ -16,7 +16,7 @@ Axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded
 Axios.interceptors.request.use(function (config) {
   if (config.method === 'post') {
     config.data = Qs.stringify(config.data)
-  }
+  }   
   return config;
 }, function (error) { // 错误处理  
   return Promise.reject(error);
